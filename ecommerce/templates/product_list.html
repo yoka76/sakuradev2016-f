@@ -1,8 +1,71 @@
-<a href="../cart_list/">カートの中身を表示する</a>
-<a href="../cart_reset/">カートを空にする</a>
-<a href="../order/">注文する</a>
-{% for product in products %}
-    <h1>{{ product.name }}</h1>
-    <img src="../../media/{{ product.image }}" alt="" width="200" height="200" border="0" />
-    <a href="../cart_add/{{ product.id }}">カートに入れる</a>
-{% endfor %}
+{% load static %}
+<html>
+<head>
+    <meta charset="utf-8"/>
+    <title>{% block title %}ショップ{% endblock %}</title>
+    <link href="{% static "css/foundation.css" %}" rel="stylesheet">
+    <link href="{% static "css/custom.css" %}" rel="stylesheet">
+</head>
+<body>
+<script src="{% static "js/vendor/jquery.js" %}"></script>
+<script src="{% static "js/vendor/foundation.js" %}"></script>
+<script src="{% static "js/vendor/what-input.js" %}"></script>
+<script>
+    $(document).foundation();
+</script>
+
+
+<div class="top-bar">
+    <div class="top-bar-left">
+        <ul class="dropdown menu" data-dropdown-menu>
+            <li class="menu-text">スイーツ男子の<b>CHOCOLATE SHOP</b></li>
+        </ul>
+    </div>
+    <div class="top-bar-right">
+        <a lole="button" class="button" href="../cart_list/">カートをみる</a>
+        <a lole="button" class="button" href="../cart_reset/">カートを空にする</a>
+        <a lole="button" class="button" href="../order/">注文する</a>
+    </div>
+</div>
+<br>
+<div class="row">
+    <div class="small-2 columns">
+        <ul class="vertical menu">
+            <li>
+                <a href="#"><b>国別</b></a>
+                <ul class="nested vertical menu">
+                    <li><a href="#">ベルギー</a></li>
+                    <li><a href="#">イギリス</a></li>
+                    <li><a href="#">アメリカ</a></li>
+                    <li><a href="#">日本</a></li>
+                </ul>
+            </li>
+            <li>
+                <a href="#"><b>カカオの割合</b></a>
+                <ul class="nested vertical menu">
+                    <li><a href="#">90%以上</a></li>
+                    <li><a href="#">80-90%</a></li>
+                    <li><a href="#">70-80%</a></li>
+                    <li><a href="#">70%以下</a></li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+    <div class="small-10 columns">
+        {% for product in products %}
+            <div class="callout clearfix">
+                <span class="float-right" style="font-size:70px; color:saddlebrown;">88%</span>
+                <h3>{{ product.name }}</h3>
+                <img src="../../media/{{ product.image }}" alt="" width="200" height="200" border="0"/>
+                {{ product.description }}
+                <br>
+                <a lole="button" class="button float-right" href="../cart_add/{{ product.id }}">カートに入れる</a>
+                <span class="float-right"><h3>{{ product.price }}yen　</h3></span>
+                <img class="float-right" src="{% static "img/japan.png" %}" width="50" height="50" border="0">
+            </div>
+        {% endfor %}
+    </div>
+</div>
+
+</body>
+</html>
