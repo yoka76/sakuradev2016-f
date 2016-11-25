@@ -22,6 +22,9 @@ from ecommerce import views
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^ec/list/', views.index),
+    url(r'^ec/country_list/', views.country_list),
+    url(r'^ec/product_list/(?P<country_id>[0-9]+)/', views.product_list),
+    url(r'^ec/cacao_list/(?P<lte>[0-9]+)/(?P<gte>[0-9]+)/', views.product_list),
     url(r'^ec/cart_add/(?P<product_id>[0-9]+)/', views.cart_add),
     url(r'^ec/cart_delete/(?P<product_id>[0-9]+)/', views.cart_delete),
     url(r'^ec/cart_reset/', views.cart_reset),

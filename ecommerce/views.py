@@ -20,6 +20,52 @@ def index(request):
 
     return response
 
+def country_list(request):
+    """
+    国一覧画面(/ec/country_list/)が呼び出された際に呼び出されるビューです。
+    国情報を返します。
+    """
+
+    countrys = get_list_or_404(Country)
+    all = Product.objects.count()
+
+    retData = []
+    for e in countrys:
+        row = {
+            'id':e.id ,
+            'name':e.name,
+            'parsent':len(Product.objects.filter(country=e.id)) / all * 100
+        }
+        retData.append(row)
+
+    response = render(request, 'country_list.html', {'countrys': retData })
+
+    return response
+
+def product_list(request, country_id):
+    """
+    国に紐付くチョコレート一覧画面(/ec/product_list/)が呼び出された際に呼び出されるビューです。
+    国情報を返します。
+    """
+
+    products = Product.objects.filter(country__in=country_id)
+
+    response = render(request, 'product_list.html', {'products': products})
+
+    return response
+
+def cacao_list(request, lte, gte):
+    """
+    カカオ割合絞込みチョコレート一覧画面(/ec/product_list/)が呼び出された際に呼び出されるビューです。
+    チョコレート情報を返します。
+    """
+
+    products = Product.objects.filter(cacao__lte=lte, cacao__gte=gte)
+
+    response = render(request, 'cacao_list.html', {'products': products })
+
+    return response
+
 def cart_add(request, product_id):
     """
     カートに任意の商品を追加する場合に呼び出されるビューです。
