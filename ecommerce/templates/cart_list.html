@@ -22,24 +22,28 @@
         </ul>
     </div>
     <div class="top-bar-right">
-        <a lole="button" class="button" href="../list/">チョコリスト</a>
-        <a lole="button" class="button" href="../cart_list/">買い物カゴ</a>
-        <a lole="button" class="button" href="../order/">注文する</a>
+        <a lole="button" class="button" href="/ec/list/">チョコリスト</a>
+        <a lole="button" class="button" href="/ec/cart_list/">買い物カゴ</a>
+        <a lole="button" class="button" href="/ec/order/">注文する</a>
     </div>
 </div>
 <table>
     <tr>
+        <th></th>
         <th>Country</th>
-        <th>percentage of cacao</th>
         <th>Name</th>
+        <th>percentage of cacao</th>
         <th>Price</th>
+        <th></th>
     </tr>
 {% for product in products %}
     <tr>
         <td><img src="../../media/{{ product.image }}" alt="" width="100" height="100" border="1" /></td>
-        <td>{{ product.id }}</td>
+        <td>{{ product.country.name }}</td>
         <td>{{ product.name }}</td>
-        <td>{{ product.price }}<a lole="butt:qon" class="button float-right" href="../cart_delete/{{ product.id }}">やめとく</a></td>
+        <td>{{ product.cacao }}%</td>
+        <td>￥{{ product.price }}</td>
+        <td><a lole="butt:qon" class="button float-right" href="/ec/cart_delete/{{ product.id }}">やめとく</a></td>
     </tr>
 {% endfor %}
 </table>

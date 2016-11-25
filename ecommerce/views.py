@@ -48,9 +48,11 @@ def product_list(request, country_id):
     国情報を返します。
     """
 
+    countrys = get_list_or_404(Country)
+    target = Country.objects.get(id__in=country_id)
     products = Product.objects.filter(country__in=country_id)
 
-    response = render(request, 'product_list.html', {'products': products})
+    response = render(request, 'product_list.html', {'products': products,'countrys': countrys,'target': target})
 
     return response
 
@@ -59,10 +61,16 @@ def cacao_list(request,gte,lte):
     カカオ割合絞込みチョコレート一覧画面(/ec/product_list/)が呼び出された際に呼び出されるビューです。
     チョコレート情報を返します。
     """
-
+    countrys = get_list_or_404(Country)
     products = Product.objects.filter(cacao__lte=lte, cacao__gte=gte)
+    if lte == '100':
+        target = 'カカオ ' + gte + '%以上'
+    elif gte == '0':
+        target = 'カカオ ' + lte + '%以下'
+    else:
+        target = 'カカオ ' + gte + '%~' + lte + '%'
 
-    response = render(request, 'cacao_list.html', {'products': products })
+    response = render(request, 'cacao_list.html', {'products': products,'countrys': countrys,'target': target})
 
     return response
 
@@ -135,7 +143,7 @@ def cart_list(request):
     cart = request.session['cart']
 
     #   カートに入っている商品の情報を取得します
-    products = Product.objects.filter(id__in=cart)
+    products = Product.objects.filter(id__in=cart).select_related('country')
 
     return render(request, 'cart_list.html', {'products': products})
 
