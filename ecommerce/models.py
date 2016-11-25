@@ -59,3 +59,12 @@ class Payment(models.Model):
 
     def __str__(self):
         return self.name
+
+
+class Country(models.Model):
+    created_at = models.DateTimeField("作成日時", auto_now_add=True)
+    updated_at = models.DateTimeField("更新日時", auto_now=True)
+    name = models.CharField("国名", max_length=30)
+
+    def __str__(self):
+        return self.name
