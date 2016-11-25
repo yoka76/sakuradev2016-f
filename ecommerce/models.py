@@ -21,6 +21,7 @@ class Product(models.Model):
     is_enabled = models.BooleanField("商品の販売状態", default=True)
     created_at = models.DateTimeField("作成日時", auto_now_add=True)
     updated_at = models.DateTimeField("更新日時", auto_now=True)
+    country = models.ForeignKey("Country")
 
     def __str__(self):
         return self.name
@@ -60,11 +61,11 @@ class Payment(models.Model):
     def __str__(self):
         return self.name
 
-
 class Country(models.Model):
     created_at = models.DateTimeField("作成日時", auto_now_add=True)
     updated_at = models.DateTimeField("更新日時", auto_now=True)
     name = models.CharField("国名", max_length=30)
+    image = models.FileField("商品画像", upload_to="", blank=True)
 
     def __str__(self):
         return self.name
