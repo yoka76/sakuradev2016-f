@@ -21,6 +21,8 @@ class Product(models.Model):
     is_enabled = models.BooleanField("商品の販売状態", default=True)
     created_at = models.DateTimeField("作成日時", auto_now_add=True)
     updated_at = models.DateTimeField("更新日時", auto_now=True)
+    country = models.ForeignKey("Country")
+    cacao = models.IntegerField("カカオの割合", default=0)
 
     def __str__(self):
         return self.name
@@ -56,6 +58,15 @@ class Order(models.Model):
 class Payment(models.Model):
     name = models.CharField("決済名", max_length=30)
     payment_type = models.CharField("決済種別", max_length=30)
+
+    def __str__(self):
+        return self.name
+
+class Country(models.Model):
+    created_at = models.DateTimeField("作成日時", auto_now_add=True)
+    updated_at = models.DateTimeField("更新日時", auto_now=True)
+    name = models.CharField("国名", max_length=30)
+    image = models.FileField("商品画像", upload_to="", blank=True)
 
     def __str__(self):
         return self.name
