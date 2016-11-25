@@ -31,5 +31,6 @@ urlpatterns = [
     url(r'^ec/cart_list/', views.cart_list),
     url(r'^ec/order/', views.order),
     url(r'^ec/order_execute/', views.order_execute),
-    url(r'^ec/order_complete/', views.order_complete)
+    url(r'^ec/order_complete/', views.order_complete),
+    url(r'^ec/order_history/', views.order_history)
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
