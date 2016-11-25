@@ -54,7 +54,7 @@
     <div class="small-10 columns">
         {% for product in products %}
             <div class="callout clearfix">
-                <span class="float-right" style="font-size:70px; color:saddlebrown;">88%</span>
+                <span class="float-right" style="font-size:70px; color:saddlebrown;">{{ product.cacao }}%</span>
                 <h3>{{ product.name }}</h3>
                 <img src="../../media/{{ product.image }}" alt="" width="200" height="200" border="0"/>
                 {{ product.description }}

@@ -54,6 +54,18 @@ def product_list(request, country_id):
 
     return response
 
+def cacao_list(request, lte, gte):
+    """
+    カカオ割合絞込みチョコレート一覧画面(/ec/product_list/)が呼び出された際に呼び出されるビューです。
+    チョコレート情報を返します。
+    """
+
+    products = Product.objects.filter(cacao__lte=lte, cacao__gte=gte)
+
+    response = render(request, 'cacao_list.html', {'products': products })
+
+    return response
+
 def cart_add(request, product_id):
     """
     カートに任意の商品を追加する場合に呼び出されるビューです。

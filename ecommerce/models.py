@@ -22,6 +22,7 @@ class Product(models.Model):
     created_at = models.DateTimeField("作成日時", auto_now_add=True)
     updated_at = models.DateTimeField("更新日時", auto_now=True)
     country = models.ForeignKey("Country")
+    cacao = models.IntegerField("カカオの割合", default=0)
 
     def __str__(self):
         return self.name
