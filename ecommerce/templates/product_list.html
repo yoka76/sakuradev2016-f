@@ -22,9 +22,9 @@
         </ul>
     </div>
     <div class="top-bar-right">
-        <a lole="button" class="button" href="../cart_list/">カートをみる</a>
-        <a lole="button" class="button" href="../cart_reset/">カートを空にする</a>
-        <a lole="button" class="button" href="../order/">注文する</a>
+        <a lole="button" class="button" href="/ec/cart_list/">カートをみる</a>
+        <a lole="button" class="button" href="/ec/cart_reset/">カートを空にする</a>
+        <a lole="button" class="button" href="/ec/order/">注文する</a>
     </div>
 </div>
 <br>
@@ -34,24 +34,24 @@
             <li>
                 <a href="#"><b>国別</b></a>
                 <ul class="nested vertical menu">
-                    <li><a href="#">ベルギー</a></li>
-                    <li><a href="#">イギリス</a></li>
-                    <li><a href="#">アメリカ</a></li>
-                    <li><a href="#">日本</a></li>
+                  {% for country in countrys %}
+                      <li><a href="/ec/product_list/{{ country.id }}">{{ country.name }}</a></li>
+                  {% endfor %}
                 </ul>
             </li>
             <li>
                 <a href="#"><b>カカオの割合</b></a>
                 <ul class="nested vertical menu">
-                    <li><a href="#">90%以上</a></li>
-                    <li><a href="#">80-90%</a></li>
-                    <li><a href="#">70-80%</a></li>
-                    <li><a href="#">70%以下</a></li>
+                  <li><a href="/ec/cacao_list/90/100">90%以上</a></li>
+                  <li><a href="/ec/cacao_list/80/90">80-90%</a></li>
+                  <li><a href="/ec/cacao_list/70/80">70-80%</a></li>
+                  <li><a href="/ec/cacao_list/0/70">70%以下</a></li>
                 </ul>
             </li>
         </ul>
     </div>
     <div class="small-10 columns">
+        <h1>{{ target.name }}</h1>
         {% for product in products %}
             <div class="callout clearfix">
                 <span class="float-right" style="font-size:70px; color:saddlebrown;">{{ product.cacao }}%</span>
@@ -59,7 +59,7 @@
                 <img src="../../media/{{ product.image }}" alt="" width="200" height="200" border="0"/>
                 {{ product.description }}
                 <br>
-                <a lole="button" class="button float-right" href="../cart_add/{{ product.id }}">カートに入れる</a>
+                <a lole="button" class="button float-right" href="/ec/cart_add/{{ product.id }}">カートに入れる</a>
                 <span class="float-right"><h3>{{ product.price }}yen　</h3></span>
                 <img class="float-right" src="{% static "img/japan.png" %}" width="50" height="50" border="0">
             </div>
