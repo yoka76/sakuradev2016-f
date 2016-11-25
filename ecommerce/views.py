@@ -11,7 +11,7 @@ def order_history(request):
     result = {}
     idx = 0
     for order in orders:
-        payment  = Payment.objects.get(id=order.id)
+        payment  = Payment.objects.get(id=order.payment_id)
         customer = Customer.objects.get(id=order.customer_id)
         order_product = Order_Product.objects.filter(order_id=order.id).select_related('product')
 
