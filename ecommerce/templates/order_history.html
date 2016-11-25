@@ -1,0 +1,31 @@
+{% for key, value in result.items %}
+    <h2>注文<h1>
+    <h2>おーだー</h2>
+    id: {{ value.order.id }}<br />
+    ordered_at: {{ value.order.ordered_at }}<br />
+    <h2>ぺいめんと</h2>
+    id: {{ value.payment.id }}<br />
+    name: {{ value.payment.name }}<br />
+    payment_type: {{ value.payment.payment_type }}<br />
+    <h2>かすたまー</h2>
+    id: {{ value.customer.id }}<br />
+    first_name: {{ value.customer.first_name }}<br />
+    last_name: {{ value.customer.last_name }}<br />
+    postal_code: {{ value.customer.postal_code }}<br />
+    prefecture: {{ value.customer.prefecture }}<br />
+    city: {{ value.customer.city }}<br />
+    street1: {{ value.customer.street1 }}<br />
+    street2: {{ value.customer.street2 }}<br />
+    tel: {{ value.customer.tel }}<br />
+    email: {{ value.customer.email }}<br />
+    <h2>しょうひん</h2>
+    {% for value2 in value.order_product %}
+        id: {{ value2.product.id }}<br />
+        name: {{ value2.product.name }}<br />
+        description: {{ value2.product.name }}<br />
+        image: {{ value2.product.image }}<br />
+        count: {{ value2.count }}<br />
+        price: {{ value2.price }}<br />
+        -------------------------<br />
+    {% endfor %}
+{% endfor %}

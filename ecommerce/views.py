@@ -3,6 +3,26 @@ from django.shortcuts import redirect, render, get_list_or_404, render_to_respon
 from ecommerce.models import *
 
 # Create your views here.
+def order_history(request):
+    """
+    購入履歴
+    """
+    orders = Order.objects.order_by('-ordered_at')
+    result = {}
+    idx = 0
+    for order in orders:
+        payment  = Payment.objects.get(id=order.id)
+        customer = Customer.objects.get(id=order.customer_id)
+        order_product = Order_Product.objects.filter(order_id=order.id).select_related('product')
+
+        result[idx] = {}
+        result[idx]["payment"]       = payment
+        result[idx]["order"]         = order
+        result[idx]["customer"]      = customer
+        result[idx]["order_product"] = order_product
+        idx += 1
+    response = render(request, 'order_history.html', {'result': result})
+    return response
 
 def index(request):
     """
