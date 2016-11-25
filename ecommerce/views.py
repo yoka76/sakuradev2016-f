@@ -54,7 +54,7 @@ def product_list(request, country_id):
 
     return response
 
-def cacao_list(request, lte, gte):
+def cacao_list(request,gte,lte):
     """
     カカオ割合絞込みチョコレート一覧画面(/ec/product_list/)が呼び出された際に呼び出されるビューです。
     チョコレート情報を返します。
