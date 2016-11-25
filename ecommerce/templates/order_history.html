@@ -43,10 +43,11 @@
     {% for value2 in value.order_product %}
     <tr>
         <td>{{ value2.product.name }}</td>
-        <td><img src="../../media/{{ value2.product.image }}" alt="" width="200" height="200" border="0" /></td>
+        <td><img src="../../media/{{ value2.product.image }}" alt="" width="200px" height="200px" border="0" /></td>
         <td>{{ value2.price }}</td>
     </tr>
-    </table>
     {% endfor %}
 </table>
+</table>
+<hr />
 {% endfor %}
